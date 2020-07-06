@@ -202,11 +202,15 @@ def prepare(**kwargs):
     """
     if kwargs['debug']:
         LOGGER.setLevel('DEBUG')
-    LOGGER.info("Running readalongs prepare(lang={}, force-overwrite={}, inputfile={}, xmlfile={})."
-                .format(kwargs['language'], kwargs['force_overwrite'],
+        LOGGER.info("Running readalongs prepare(lang={}, force-overwrite={}, inputfile={}, xmlfile={})."
+                    .format(kwargs['language'], kwargs['force_overwrite'],
                         kwargs['inputfile'], kwargs['xmlfile']))
 
     xmlpath = kwargs['xmlfile']
     if os.path.exists(xmlpath) and not kwargs['force_overwrite']:
         raise click.BadParameter("Output file %s exists already, use -f to overwrite."
                                  % xmlpath)
+    filehandle, filename \
+        = create_input_tei(kwargs['inputfile'],
+                           text_language=kwargs['language'],
+                           output_file=kwargs['xmlfile'])

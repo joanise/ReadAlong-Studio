@@ -1,5 +1,5 @@
 from unittest import main, TestCase
-from tempfile import TemporaryDirectory
+import tempfile
 import os
 
 from readalongs.log import LOGGER
@@ -7,19 +7,22 @@ from readalongs.app import app
 from readalongs.cli import prepare
 
 class TestPrepareCli(TestCase):
-    #LOGGER.setLevel('DEBUG')
+    LOGGER.setLevel('DEBUG')
     data_dir = os.path.join(os.path.dirname(__file__), 'data')
 
     def setUp(self):
+        app.logger.setLevel('DEBUG')
         self.runner = app.test_cli_runner()
-        self.tempdir = TemporaryDirectory()
-        #print('tmpdir={}'.format(self.tempdir.name))
+        self.tempdirobj = tempfile.TemporaryDirectory(prefix="test_prepare_cli_tmpdir", dir=".")
+        self.tempdir = self.tempdirobj.name
+        #self.tempdir = tempfile.mkdtemp(prefix="test_prepare_cli_tmpdir", dir=".")
+        #print('tmpdir={}'.format(self.tempdir))
 
     def tearDown(self):
-        self.tempdir.cleanup()
+        self.tempdirobj.cleanup()
 
     def test_invoke_prepare(self):
-        results = self.runner.invoke(prepare, '-l atj /dev/null delme')
+        results = self.runner.invoke(prepare, '-l atj -d /dev/null ' + self.tempdir + '/delme')
         self.assertEqual(results.exit_code, 0)
         self.assertRegex(results.stdout, "Running readalongs prepare")
         #print('Prepare.stdout: {}'.format(results.stdout))
@@ -40,7 +43,7 @@ class TestPrepareCli(TestCase):
         self.assertRegex(results.stdout, 'exists.*overwrite')
 
     def test_output_exists(self):
-        xmlfile=self.tempdir.name+'/fra.xml'
+        xmlfile=self.tempdir+'/fra.xml'
         results = self.runner.invoke(prepare, ['-l', 'fra', self.data_dir+'/fra.txt', xmlfile])
         self.assertTrue(os.path.exists(xmlfile), 'output xmlfile did not get created')
 
