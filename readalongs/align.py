@@ -508,7 +508,7 @@ def create_input_tei(text: str, **kwargs):
     **save_temps in kwargs : Union[str, None], optional
         prefix for output file name, which will be kept; or None to create a temporary file
     **output_file in kwargs : Union[str, None], optional
-
+        if specified, the output file will have exactly this name
     
     Returns
     -------
