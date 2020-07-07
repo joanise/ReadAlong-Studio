@@ -91,9 +91,12 @@ def align(**kwargs):
     output-base : A base name for output files
     """
     if os.path.exists(kwargs['output_base']):
+        if not os.path.isdir(kwargs['output_base']):
+            raise click.UsageError(
+                f"Output folder '{kwargs['output_base']}' already exists but is a not a directory.")
         if not kwargs['force_overwrite']:
             raise click.UsageError(
-                f"Output folder '{kwargs['output_base']}' already exists")
+                f"Output folder '{kwargs['output_base']}' already exists, use -f to overwrite.")
     else:
         os.mkdir(kwargs['output_base'])
     output_base = os.path.join(kwargs['output_base'], os.path.basename(kwargs['output_base']))
