@@ -90,16 +90,28 @@ def align(**kwargs):
 
     output-base : A base name for output files
     """
-    if os.path.exists(kwargs['output_base']):
-        if not os.path.isdir(kwargs['output_base']):
+    output_dir = kwargs['output_base']
+    if os.path.exists(output_dir):
+        if not os.path.isdir(output_dir):
             raise click.UsageError(
-                f"Output folder '{kwargs['output_base']}' already exists but is a not a directory.")
+                f"Output folder '{output_dir}' already exists but is a not a directory.")
         if not kwargs['force_overwrite']:
             raise click.UsageError(
-                f"Output folder '{kwargs['output_base']}' already exists, use -f to overwrite.")
+                f"Output folder '{output_dir}' already exists, use -f to overwrite.")
     else:
-        os.mkdir(kwargs['output_base'])
-    output_base = os.path.join(kwargs['output_base'], os.path.basename(kwargs['output_base']))
+        os.mkdir(output_dir)
+
+    # Make sure we can write to the output directory, for early error checking and user
+    # friendly error messages.
+    test_file = output_dir+"/delme-write-permission-test-file"
+    try:
+        fp = open(test_file, mode='w')
+    except:
+        raise click.UsageError(
+            f"Cannot write into output folder '{output_dir}'. Please verify permissions.")
+    os.unlink(test_file)
+
+    output_base = os.path.join(output_dir, os.path.basename(output_dir))
     if kwargs['debug']:
         LOGGER.setLevel('DEBUG')
     if kwargs['text_input']:
