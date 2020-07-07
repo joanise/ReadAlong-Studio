@@ -23,6 +23,7 @@
 import os
 import wave
 import shutil
+from tempfile import TemporaryFile
 
 
 import click
@@ -103,13 +104,12 @@ def align(**kwargs):
 
     # Make sure we can write to the output directory, for early error checking and user
     # friendly error messages.
-    test_file = output_dir+"/delme-write-permission-test-file"
     try:
-        fp = open(test_file, mode='w')
+        with TemporaryFile(dir=output_dir):
+            pass
     except:
         raise click.UsageError(
             f"Cannot write into output folder '{output_dir}'. Please verify permissions.")
-    os.unlink(test_file)
 
     output_base = os.path.join(output_dir, os.path.basename(output_dir))
     if kwargs['debug']:
