@@ -48,9 +48,10 @@ class TestDNAText(TestCase):
 
     def test_tok_some_words(self):
         txt = """<document xml:lang="fra">
+<p><s>Bonjour! Comment ça va?</s></p>
 <p do-not-align="true"><s>Bonjour! Comment ça va?</s></p>
-<s><foo do-not-align="TRUE">Voici</foo> une deuxième phrase.</s>
-<s>Un <w do-not-align="1">mot</w> à exclure.</s>
+<s do-not-align="TRUE">Voici une deuxième phrase.</s>
+<s>Un <foo do-not-align="1">mot ou deux</foo> à exclure.</s>
 </document>"""
         xml = etree.fromstring(txt)
         tokenized = tokenize_xml.tokenize_xml(xml)
@@ -58,9 +59,10 @@ class TestDNAText(TestCase):
         #print('as_txt="' + as_txt +'"')
 
         ref = """<document xml:lang="fra">
+<p><s><w>Bonjour</w>! <w>Comment</w> <w>ça</w> <w>va</w>?</s></p>
 <p do-not-align="true"><s>Bonjour! Comment ça va?</s></p>
-<s><foo do-not-align="TRUE">Voici</foo> <w>une</w> <w>deuxième</w> <w>phrase</w>.</s>
-<s><w>Un</w> <w do-not-align="1">mot</w> <w>à</w> <w>exclure</w>.</s>
+<s do-not-align="TRUE">Voici une deuxième phrase.</s>
+<s><w>Un</w> <foo do-not-align="1">mot ou deux</foo> <w>à</w> <w>exclure</w>.</s>
 </document>"""
         self.assertEqual(as_txt, ref)
 
@@ -68,9 +70,10 @@ class TestDNAText(TestCase):
         ids_as_txt = etree.tounicode(with_ids)
         #print('with ids="' + ids_as_txt + '"')
         ref_with_ids = """<document xml:lang="fra">
+<p id="p0"><s id="p0s0"><w id="p0s0w0">Bonjour</w>! <w id="p0s0w1">Comment</w> <w id="p0s0w2">ça</w> <w id="p0s0w3">va</w>?</s></p>
 <p do-not-align="true"><s>Bonjour! Comment ça va?</s></p>
-<s id="s1"><foo do-not-align="1">Voici</foo> <w id="s1w1">une</w> <w id="s1w2">deuxième</w> <w id="s1w3">phrase</w>.</s>
-<s id="s2"><w id="s2w0">Un</w> <w do-not-align="1">mot</w> <w id="s2w1">à</w> <w id="s2w2">exclure</w>.</s>
+<s do-not-align="TRUE">Voici une deuxième phrase.</s>
+<s id="s0"><w id="s0w0">Un</w> <foo do-not-align="1">mot ou deux</foo> <w id="s0w1">à</w> <w id="s0w2">exclure</w>.</s>
 </document>"""
         self.assertEqual(ids_as_txt, ref_with_ids)
 
@@ -105,11 +108,9 @@ class TestDNAText(TestCase):
 <p> <s>Une phrase.</s> </p>
 <p> <s>Deux phrases.</s> </p>
 </div>
-
 <div>
 <p do-not-align="1"> <s>Une phrase.</s> </p>
-
-<p> <s do-not-align="true">Deux phrases.</s>  </p>
+<p> <s do-not-align="true">Deux phrases.</s> </p>
 <p> <s><w>Trois</w> <w>phrases</w>.</s> </p>
 </div>
 </document>"""
@@ -128,11 +129,9 @@ class TestDNAText(TestCase):
 <p> <s>Une phrase.</s> </p>
 <p> <s>Deux phrases.</s> </p>
 </div>
-
 <div id="d1">
 <p do-not-align="1"> <s>Une phrase.</s> </p>
-
-<p id="d1p0"> <s do-not-align="true">Deux phrases.</s>  </p>
+<p id="d1p0"> <s do-not-align="true">Deux phrases.</s> </p>
 <p id="d1p1"> <s id="d1p1s0"><w id="d1p1s0w0">Trois</w> <w id="d1p1s0w1">phrases</w>.</s> </p>
 </div>
 </document>"""
