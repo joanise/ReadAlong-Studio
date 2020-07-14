@@ -132,6 +132,7 @@ class TokenizerLibrary:
 
         if is_do_not_align(element): # skip elements marked do-not-align="true"
             new_element = deepcopy(element)
+            new_element.tail = '' # don't add spurious whitespace
             return new_element
 
         new_element = etree.Element(element.tag, nsmap=nsmap)
