@@ -9,3 +9,5 @@ Command line interface
 
 .. click:: readalongs.cli:align
   :prog: readalongs align
+
+blah
