@@ -24,11 +24,13 @@ jobs:
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
         run: |
           python -m build --sdist --wheel
-          twine upload dist/*
+          echo twine upload dist/*
       - name: Determine tag
         id: determine_tag
         run: |
           echo "TAG_VERSION=$(ls dist/readalongs-*.tar.gz | sed -e 's/.*readalongs-//' -e 's/.tar.gz.*//')" >> $GITHUB_OUTPUT
+      - name: show tag
+        run: echo TAG_VERSION=${{ steps.determine_tag.outputs.TAG_VERSION }}
       - name: Bump version and push tag
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.1
