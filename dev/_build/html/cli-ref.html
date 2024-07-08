@@ -1,0 +1,446 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  
+  <!-- Licensed under the Apache 2.0 License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/open-sans/stylesheet.css" />
+  <!-- Licensed under the SIL Open Font License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/source-serif-pro/source-serif-pro.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap-theme.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>Command line interface (CLI) reference &#8212; ReadAlongs-Studio  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/guzzle.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Output Realizations" href="outputs.html" />
+    <link rel="prev" title="Command line interface (CLI) user guide" href="cli-guide.html" />
+  
+   
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="outputs.html" title="Output Realizations"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="cli-guide.html" title="Command line interface (CLI) user guide"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">ReadAlongs-Studio  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Command line interface (CLI) reference</a></li> 
+      </ul>
+    </div>
+    <div class="container-wrapper">
+
+      <div id="mobile-toggle">
+        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+      </div>
+  <div id="left-column">
+    <div class="sphinxsidebar">
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <h2>Contents</h2>
+    <div class="sidebar-localtoc">
+      <ul>
+<li><a class="reference internal" href="#">Command line interface (CLI) reference</a><ul>
+<li><a class="reference internal" href="#readalongs-align">readalongs align</a></li>
+<li><a class="reference internal" href="#readalongs-make-xml">readalongs make-xml</a></li>
+<li><a class="reference internal" href="#readalongs-tokenize">readalongs tokenize</a></li>
+<li><a class="reference internal" href="#readalongs-g2p">readalongs g2p</a></li>
+<li><a class="reference internal" href="#readalongs-langs">readalongs langs</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+</div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="cli-guide.html"
+                          title="previous chapter">Command line interface (CLI) user guide</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="outputs.html"
+                          title="next chapter">Output Realizations</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/cli-ref.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <div id="main-search">
+      <form class="form-inline" action="search.html" method="GET" role="form">
+        <div class="input-group">
+          <input name="q" type="text" class="form-control" placeholder="Search...">
+        </div>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+        <div id="right-column">
+          
+          <div role="navigation" aria-label="breadcrumbs navigation">
+            <ol class="breadcrumb">
+              <li><a href="index.html">Docs</a></li>
+              
+              <li>Command line interface (CLI) reference</li>
+            </ol>
+          </div>
+          
+          <div class="document clearer body">
+            
+  <section id="command-line-interface-cli-reference">
+<span id="cli-ref"></span><h1>Command line interface (CLI) reference<a class="headerlink" href="#command-line-interface-cli-reference" title="Permalink to this headline">¶</a></h1>
+<p>This page contains the full reference documentation for each command in the CLI.
+See also <a class="reference internal" href="cli-guide.html#cli-guide"><span class="std std-ref">Command line interface (CLI) user guide</span></a> for guidelines on using the CLI.</p>
+<p>The ReadAlongs CLI has five key commands:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#cli-align"><span class="std std-ref">readalongs align</span></a>: full alignment pipeline, from plain text or XML to a
+viewable readalong</p></li>
+<li><p><a class="reference internal" href="#cli-make-xml"><span class="std std-ref">readalongs make-xml</span></a>: convert a plain text file into XML, for align</p></li>
+<li><p><a class="reference internal" href="#cli-tokenize"><span class="std std-ref">readalongs tokenize</span></a>: tokenize an XML file</p></li>
+<li><p><a class="reference internal" href="#cli-g2p"><span class="std std-ref">readalongs g2p</span></a>: g2p a tokenized XML file</p></li>
+<li><p><a class="reference internal" href="#cli-langs"><span class="std std-ref">readalongs langs</span></a>: list supported languages</p></li>
+</ul>
+<p>Each command can be run with <code class="docutils literal notranslate"><span class="pre">-h</span></code> or <code class="docutils literal notranslate"><span class="pre">--help</span></code> to display its usage manual,
+e.g., <code class="docutils literal notranslate"><span class="pre">readalongs</span> <span class="pre">-h</span></code>, <code class="docutils literal notranslate"><span class="pre">readalongs</span> <span class="pre">align</span> <span class="pre">--help</span></code>.</p>
+<section id="readalongs-align">
+<span id="cli-align"></span><h2>readalongs align<a class="headerlink" href="#readalongs-align" title="Permalink to this headline">¶</a></h2>
+<p>Align TEXTFILE and AUDIOFILE and create output files as OUTPUT_BASE.* in directory
+OUTPUT_BASE/.</p>
+<p>TEXTFILE:    Input text file path (in XML or plain text)</p>
+<div class="line-block">
+<div class="line">If TEXTFILE has a .xml or .readalong extension or starts with an XML declaration line,</div>
+<div class="line">it is parsed as XML and can be in one of three formats:</div>
+<div class="line-block">
+<div class="line">- the output of ‘readalongs make-xml’,</div>
+<div class="line">- the output of ‘readalongs tokenize’, or</div>
+<div class="line">- the output of ‘readalongs g2p’.</div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">If TEXTFILE has a .txt extension or does not start with an XML declaration</div>
+<div class="line">line, is it read as plain text with the following conventions:</div>
+<div class="line-block">
+<div class="line">- The text should be plain UTF-8 text without any markup.</div>
+<div class="line">- Paragraph breaks are indicated by inserting one blank line.</div>
+<div class="line">- Page breaks are indicated by inserting two blank lines.</div>
+</div>
+</div>
+<p>One can add the known ARPABET phonetics in the XML for words (&lt;w&gt; elements)
+that are not correctly handled by g2p in the output of ‘readalongs tokenize’
+or ‘readalongs g2p’, via the ARPABET attribute.</p>
+<p>One can add anchor elements in the XML, e.g., ‘&lt;anchor time=”2.345s”/&gt;’, to
+mark known anchor points between the audio and text stream.</p>
+<p>AUDIOFILE:   Input audio file path, in any format supported by ffmpeg</p>
+<p>OUTPUT_BASE: Output files will be saved as OUTPUT_BASE/OUTPUT_BASE.*</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>readalongs<span class="w"> </span>align<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>TEXTFILE<span class="w"> </span>AUDIOFILE<span class="w"> </span>OUTPUT_BASE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-align-b">
+<span id="cmdoption-readalongs-align-bare"></span><span class="sig-name descname"><span class="pre">-b</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--bare</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-align-b" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bare alignments do not split silences between words</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-align-c">
+<span id="cmdoption-readalongs-align-config"></span><span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--config</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;config&gt;</span></span><a class="headerlink" href="#cmdoption-readalongs-align-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use ReadAlong-Studio configuration file (in JSON format)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-align-o">
+<span id="cmdoption-readalongs-align-output-formats"></span><span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output-formats</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output_formats&gt;</span></span><a class="headerlink" href="#cmdoption-readalongs-align-o" title="Permalink to this definition">¶</a></dt>
+<dd><p>Comma- or colon-separated list of additional output file formats to export to. The text is always exported as XML and alignments as SMIL, but one or more of these formats can be requested in addition:</p>
+<p>eaf (ELAN file), html (Single-file, offline HTML), srt (SRT subtitle), TextGrid (Praat TextGrid), vtt (WebVTT subtitle), xhtml (Simple XHTML)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-align-f">
+<span id="cmdoption-readalongs-align-force-overwrite"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--force-overwrite</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-align-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Force overwrite output files</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-align-l">
+<span id="cmdoption-readalongs-align-language"></span><span id="cmdoption-readalongs-align-languages"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--language</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--languages</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;language&gt;</span></span><a class="headerlink" href="#cmdoption-readalongs-align-l" title="Permalink to this definition">¶</a></dt>
+<dd><p>The language code(s) for text in TEXTFILE (use only with plain text input); multiple codes can be joined by ‘,’ or ‘:’, or by repeating the option, to enable the g2p cascade (run ‘readalongs g2p -h’ for details); run ‘readalongs langs’ to list all supported languages.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-align-m">
+<span id="cmdoption-readalongs-align-align-mode"></span><span class="sig-name descname"><span class="pre">-m</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--align-mode</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;align_mode&gt;</span></span><a class="headerlink" href="#cmdoption-readalongs-align-m" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decoder search parameters: ‘strict’ means a narrow beam, fastest but might fail to find an alignment; ‘loose’ means an unlimited beam, slowest, should always succeed but the alignment is more likely to be wrong; ‘moderate’ is in between; ‘auto’ (the default) means try strict first, and fall back to moderate then loose if no alignment is found.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Options</dt>
+<dd class="field-odd"><p>strict | moderate | loose | auto</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-align-s">
+<span id="cmdoption-readalongs-align-save-temps"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--save-temps</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-align-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save intermediate stages of processing and temporary files (dictionary, FSG, tokenization, etc)</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-align-d">
+<span id="cmdoption-readalongs-align-debug"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--debug</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-align-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display debugging messages</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-align-debug-aligner">
+<span class="sig-name descname"><span class="pre">--debug-aligner</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-align-debug-aligner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display logs from the aligner</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-align-debug-g2p">
+<span class="sig-name descname"><span class="pre">--debug-g2p</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-align-debug-g2p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display verbose g2p error messages</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-align-arg-TEXTFILE">
+<span id="cmdoption-readalongs-align-arg-textfile"></span><span class="sig-name descname"><span class="pre">TEXTFILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-align-arg-TEXTFILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-align-arg-AUDIOFILE">
+<span id="cmdoption-readalongs-align-arg-audiofile"></span><span class="sig-name descname"><span class="pre">AUDIOFILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-align-arg-AUDIOFILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-align-arg-OUTPUT_BASE">
+<span id="cmdoption-readalongs-align-arg-output-base"></span><span class="sig-name descname"><span class="pre">OUTPUT_BASE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-align-arg-OUTPUT_BASE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="readalongs-make-xml">
+<span id="cli-make-xml"></span><h2>readalongs make-xml<a class="headerlink" href="#readalongs-make-xml" title="Permalink to this headline">¶</a></h2>
+<p>make XMLFILE for ‘readalongs align’ from PLAINTEXTFILE.</p>
+<p>PLAINTEXTFILE must be plain text encoded in UTF-8, with one sentence per line,
+paragraph breaks marked by a blank line, and page breaks marked by two
+blank lines.</p>
+<p>PLAINTEXTFILE: Path to the plain text input file, or - for stdin</p>
+<p>XMLFILE:       Path to the XML output file, or - for stdout [default: PLAINTEXTFILE.readalong]</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>readalongs<span class="w"> </span>make-xml<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>PLAINTEXTFILE<span class="w"> </span><span class="o">[</span>XMLFILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-make-xml-d">
+<span id="cmdoption-readalongs-make-xml-debug"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--debug</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-make-xml-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add debugging messages to logger</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-make-xml-f">
+<span id="cmdoption-readalongs-make-xml-force-overwrite"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--force-overwrite</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-make-xml-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Force overwrite output files</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-make-xml-l">
+<span id="cmdoption-readalongs-make-xml-language"></span><span id="cmdoption-readalongs-make-xml-languages"></span><span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--language</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--languages</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;language&gt;</span></span><a class="headerlink" href="#cmdoption-readalongs-make-xml-l" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Required</strong> The language code(s) for text in PLAINTEXTFILE; multiple codes can be joined by ‘,’ or ‘:’, or by repeating the option, to enable the g2p cascade (run ‘readalongs g2p -h’ for details); run ‘readalongs langs’ to list all supported languages.</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-make-xml-arg-PLAINTEXTFILE">
+<span id="cmdoption-readalongs-make-xml-arg-plaintextfile"></span><span class="sig-name descname"><span class="pre">PLAINTEXTFILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-make-xml-arg-PLAINTEXTFILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-make-xml-arg-XMLFILE">
+<span id="cmdoption-readalongs-make-xml-arg-xmlfile"></span><span class="sig-name descname"><span class="pre">XMLFILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-make-xml-arg-XMLFILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</section>
+<section id="readalongs-tokenize">
+<span id="cli-tokenize"></span><h2>readalongs tokenize<a class="headerlink" href="#readalongs-tokenize" title="Permalink to this headline">¶</a></h2>
+<p>Tokenize XMLFILE for ‘readalongs align’ into TOKFILE.</p>
+<p>XMLFILE should have been produced by ‘readalongs make-xml’.
+TOKFILE can then be augmented with word-specific language codes.
+‘readalongs align’ can be called with either XMLFILE or TOKFILE as XML input.</p>
+<p>XMLFILE: Path to the XML file to tokenize, or - for stdin</p>
+<p>TOKFILE: Output path for the tok’d XML, or - for stdout [default: XMLFILE.tokenized.readalong]</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>readalongs<span class="w"> </span>tokenize<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>XMLFILE<span class="w"> </span><span class="o">[</span>TOKFILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-tokenize-d">
+<span id="cmdoption-readalongs-tokenize-debug"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--debug</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-tokenize-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add debugging messages to logger</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-tokenize-f">
+<span id="cmdoption-readalongs-tokenize-force-overwrite"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--force-overwrite</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-tokenize-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Force overwrite output files</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-tokenize-arg-XMLFILE">
+<span id="cmdoption-readalongs-tokenize-arg-xmlfile"></span><span class="sig-name descname"><span class="pre">XMLFILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-tokenize-arg-XMLFILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-tokenize-arg-TOKFILE">
+<span id="cmdoption-readalongs-tokenize-arg-tokfile"></span><span class="sig-name descname"><span class="pre">TOKFILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-tokenize-arg-TOKFILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</section>
+<section id="readalongs-g2p">
+<span id="cli-g2p"></span><h2>readalongs g2p<a class="headerlink" href="#readalongs-g2p" title="Permalink to this headline">¶</a></h2>
+<p>Apply g2p mappings to TOKFILE into G2PFILE.</p>
+<p>TOKFILE should have been produced by ‘readalongs tokenize’.
+G2PFILE can then be modified to adjust the phonetic representation as needed.
+‘readalongs align’ can be called with G2PFILE instead of TOKFILE as XML input.</p>
+<p>The g2p cascade will be enabled whenever an XML element or any of its
+ancestors in TOKFILE has the attribute “fallback-langs” containing a comma-
+or colon-separated list of language codes. Provide multiple language codes to
+“readalongs make-xml” via its -l option to generate this attribute globally,
+or add it manually where needed. Undetermined, “und”, is automatically
+added at the end of the language list provided via -l.</p>
+<p>With the g2p cascade, if a word cannot be mapped to valid ARPABET with the
+language found in the “xml:lang” attribute, the languages in
+“fallback-langs” are tried in order until a valid ARPABET mapping is
+generated.</p>
+<p>The output XML file can be used as input to align.</p>
+<p>TOKFILE: Path to the input tokenized XML file, or - for stdin</p>
+<p>G2PFILE: Output path for the g2p’d XML, or - for stdout [default: TOKFILE
+with .g2p. inserted]</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>readalongs<span class="w"> </span>g2p<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>TOKFILE<span class="w"> </span><span class="o">[</span>G2PFILE<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-g2p-f">
+<span id="cmdoption-readalongs-g2p-force-overwrite"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--force-overwrite</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-g2p-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Force overwrite output files</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-g2p-debug-g2p">
+<span class="sig-name descname"><span class="pre">--debug-g2p</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-g2p-debug-g2p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display verbose messages about g2p errors.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-g2p-d">
+<span id="cmdoption-readalongs-g2p-debug"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--debug</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-g2p-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add debugging messages to logger</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-g2p-arg-TOKFILE">
+<span id="cmdoption-readalongs-g2p-arg-tokfile"></span><span class="sig-name descname"><span class="pre">TOKFILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-g2p-arg-TOKFILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-readalongs-g2p-arg-G2PFILE">
+<span id="cmdoption-readalongs-g2p-arg-g2pfile"></span><span class="sig-name descname"><span class="pre">G2PFILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-readalongs-g2p-arg-G2PFILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</section>
+<section id="readalongs-langs">
+<span id="cli-langs"></span><h2>readalongs langs<a class="headerlink" href="#readalongs-langs" title="Permalink to this headline">¶</a></h2>
+<p>List all the language codes and names currently supported by g2p
+that can be used for ReadAlongs creation.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>readalongs<span class="w"> </span>langs<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </div>
+            
+  <div class="footer-relations">
+    
+      <div class="pull-left">
+        <a class="btn btn-default" href="cli-guide.html" title="previous chapter (use the left arrow)">Command line interface (CLI) user guide</a>
+      </div>
+    
+      <div class="pull-right">
+        <a class="btn btn-default" href="outputs.html" title="next chapter (use the right arrow)">Output Realizations</a>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="outputs.html" title="Output Realizations"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="cli-guide.html" title="Command line interface (CLI) user guide"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">ReadAlongs-Studio  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Command line interface (CLI) reference</a></li> 
+      </ul>
+    </div>
+<script type="text/javascript">
+  $("#mobile-toggle a").click(function () {
+    $("#left-column").toggle();
+  });
+</script>
+<script type="text/javascript" src="_static/js/bootstrap.js"></script>
+  <div class="footer">
+    &copy; Copyright 2019-2022 David Huggins-Daines and National Research Council Canada. Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  </body>
+</html>
